@@ -58,16 +58,15 @@ function handleCollisions() {
     if (y + ballRadius > canvas.height || y - ballRadius < 0) vy = -vy;
 
     if (x - ballRadius < paddleWidth && leftPaddleY < y && y < leftPaddleY + paddleHeight) {
-        vx = -vx
-        x += ballRadius
+        vx = -vx;
+        x += ballRadius;
         score++;
     }
-    
+
     if (x + ballRadius > (canvas.width - paddleWidth) && rightPaddleY < y && y < rightPaddleY + paddleHeight) {
         vx = -vx;
-        x -= ballRadius
+        x -= ballRadius;
         score++;
-        }
     }
 }
 
@@ -131,5 +130,3 @@ function draw() {
 }
 
 draw();
-
-
