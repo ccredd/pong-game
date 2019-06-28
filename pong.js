@@ -57,21 +57,25 @@ function drawPaddles() {
 function handleCollisions() {
     if (y + ballRadius > canvas.height || y - ballRadius < 0) vy = -vy;
 
-    if ((x - ballRadius < paddleWidth && leftPaddleY < y && y < leftPaddleY + paddleHeight) ||
-        (x + ballRadius > (canvas.width - paddleWidth) && rightPaddleY < y && y < rightPaddleY + paddleHeight)) {
-        vx = -vx;
+    if (x - ballRadius < paddleWidth && leftPaddleY < y && y < leftPaddleY + paddleHeight) {
+        vx = -vx
+        x += ballRadius
         score++;
-        if (score === 100) {
-            alert("100 TIMES!!! Can you do better? Start Over!");
-            document.location.reload();
+    }
+    
+    if (x + ballRadius > (canvas.width - paddleWidth) && rightPaddleY < y && y < rightPaddleY + paddleHeight) {
+        vx = -vx;
+        x -= ballRadius
+        score++;
         }
     }
 }
 
 function endGame() {
     if (x - ballRadius < 0 || x + ballRadius > canvas.width) {
-        alert("YOU HAVE FAILED");
-        document.location.reload();
+        alert("YOUR BALL HIT A VERTICAL WALL. CAN YOU BEAT YOUR LAST SCORE? TRY AGAIN");
+        startScreen();
+        //document.location.reload();
     }
 }
 
@@ -94,8 +98,9 @@ function startScreen() {
     ctx.fillText("Press A to move the left paddle up", 200, 160);
     ctx.fillText("Press Z to move the left paddle down", 200, 190);
     ctx.fillText("Press K to move the right paddle up", 200, 220);
-    ctx.fillText("If the ball hits a vertical wall, you lose", 200, 250);
-    ctx.fillText("Try and Make it to 100 points", 200, 280);
+    ctx.fillText("Press M to move the right paddle down", 200, 250);
+    ctx.fillText("If the ball hits a vertical wall, you lose", 200, 280);
+    ctx.fillText("Try and Make it to 100 points", 200, 320);
     ctx.font = "40px Comic Sans MS";
     ctx.fillStyle = "#8B0000";
     ctx.fillText("READY, SET, GO!", 200, 350);
