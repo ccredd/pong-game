@@ -74,8 +74,7 @@ function handleCollisions() {
 function endGame() {
     if (x - ballRadius < 0 || x + ballRadius > canvas.width) {
         alert("YOUR BALL HIT A VERTICAL WALL. CAN YOU BEAT YOUR LAST SCORE? TRY AGAIN");
-        startScreen();
-        //document.location.reload();
+        document.location.reload();
     }
 }
 
